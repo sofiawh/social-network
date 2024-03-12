@@ -1,7 +1,8 @@
 package com.example.notificationservice.service;
 
-import com.example.notificationservice.dto.NotificationDto;
 import com.nabilaitnacer.servicepost.dto.PostProducerDto;
+
+import com.example.notificationservice.dto.NotificationDto;
 
 import java.util.List;
 

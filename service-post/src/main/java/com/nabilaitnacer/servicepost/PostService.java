@@ -6,7 +6,7 @@ import com.nabilaitnacer.servicepost.dto.*;
 import com.nabilaitnacer.servicepost.dto.inter.InteractionDto;
 import com.nabilaitnacer.servicepost.exception.PostException;
 import com.nabilaitnacer.servicepost.exception.PostNotFoundException;
-import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+//import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
