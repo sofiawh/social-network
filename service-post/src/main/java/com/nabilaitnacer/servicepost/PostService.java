@@ -4,6 +4,7 @@ import com.nabilaitnacer.servicepost.client.InteractionClient;
 import com.nabilaitnacer.servicepost.client.MediaClient;
 import com.nabilaitnacer.servicepost.dto.*;
 import com.nabilaitnacer.servicepost.dto.inter.InteractionDto;
+import com.nabilaitnacer.servicepost.event.PostPlacedEvent;
 import com.nabilaitnacer.servicepost.exception.PostException;
 import com.nabilaitnacer.servicepost.exception.PostNotFoundException;
 //import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
@@ -11,6 +12,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -29,6 +31,8 @@ public class PostService {
     @Qualifier("com.nabilaitnacer.servicepost.client.InteractionClient")
     private final InteractionClient interactionClient;
 
+    private final KafkaTemplate<String, PostPlacedEvent> kafkaTemplate;
+
     @Transactional
     public PostResponse createPost(Long userId, PostRequest postRequest) {
         PostEntityDto postEntityDto = PostEntityDto.builder()
@@ -39,6 +43,9 @@ public class PostService {
                 .build();
         PostEntity postEntity = modelMapper.map(postEntityDto, PostEntity.class);
         postEntity = postRepository.save(postEntity);
+        // kafka by s
+        kafkaTemplate.send("notificationTopic", new PostPlacedEvent(postEntity.getId().toString()));
+
         PostResponse postResponse = new PostResponse();
         postResponse.setPost(postEntityDto);
         postResponse.getPost().setId(postEntity.getId());
