@@ -44,7 +44,7 @@ public class PostService {
         PostEntity postEntity = modelMapper.map(postEntityDto, PostEntity.class);
         postEntity = postRepository.save(postEntity);
         // kafka by s
-        kafkaTemplate.send("notificationTopic", new PostPlacedEvent(postEntity.getId().toString()));
+        kafkaTemplate.send("notificationTopic", new PostPlacedEvent(postEntity.getId().toString(),postEntity.getUserId().toString()));
 
         PostResponse postResponse = new PostResponse();
         postResponse.setPost(postEntityDto);

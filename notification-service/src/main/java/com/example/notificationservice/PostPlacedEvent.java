@@ -10,4 +10,5 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class PostPlacedEvent {
     private String postNumber;
+    private String userId;
 }
