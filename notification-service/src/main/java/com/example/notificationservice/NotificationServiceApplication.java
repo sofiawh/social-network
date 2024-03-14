@@ -38,7 +38,7 @@ public class NotificationServiceApplication {
     public void handleNotification(PostPlacedEvent postPlacedEvent) {
         log.info("TraceId- {}, Received Notification for Order - {}", postPlacedEvent.getPostNumber());
         System.out.println("****** postPlacedEvent****"+postPlacedEvent.getUserId());
-        String userId = "1"; // Remplacez par l'ID utilisateur approprié
+        String userId = postPlacedEvent.getUserId();// "1"; // Remplacez par l'ID utilisateur approprié
 
         // Appelez le service externe via Feign pour récupérer la liste des amis
         List<UserDTO> friends = friendServiceClient.getAllFriendsProfile(userId);
