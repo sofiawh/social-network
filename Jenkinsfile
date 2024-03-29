@@ -53,7 +53,7 @@ pipeline {
                     microservices.each { service ->
                         dir(service) {
                             checkout([$class: 'GitSCM', branches: [[name: '*/devsofia']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/sofiawh/social-network']]])
-                            sh "mvn clean install"
+                            bat "mvn clean install"
                         }
                     }
                 }
@@ -67,7 +67,7 @@ pipeline {
 
                     microservices.each { service ->
                         dir(service) {
-                            sh "mvn test"
+                            bat  "mvn test"
                         }
                     }
                 }
@@ -76,7 +76,7 @@ pipeline {
         stage('Build and Deploy with Docker Compose') {
             steps {
                 // Construction et déploiement avec Docker Compose
-                sh 'docker-compose -f docker-compose.yml up -d --build'
+                bat 'docker-compose -f docker-compose.yml up -d --build'
             }
         }
     }
