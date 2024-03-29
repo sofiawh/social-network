@@ -1,6 +1,112 @@
 version: '3.1'
 
 services:
+ socialnet-discovery-service:
+  build: ./discovery
+  container_name: socialnet-discovery-service
+  ports:
+   - '8761:8761'
+  expose:
+   - '8761'
+  healthcheck:
+   test: [ "CMD", "curl", "-f", "http://localhost:8761/actuator/health" ]
+   interval: 10s
+   retries: 4
+
+ socialnet-auth-service-service:
+   build: ./auth-service
+   container_name: socialnet-auth-service
+   ports:
+    - '8101:8101'
+   expose:
+    - '8101'
+   environment:
+    - DISCOVERY_SERVICE_URL=http://socialnet-discovery-service:8761/eureka
+ socialnet-feeds-service:
+  build: ./feeds-service
+  container_name: socialnet-feeds-service
+  ports:
+   - '8085:8085'
+  expose:
+   - '8085'
+  environment:
+   - DISCOVERY_SERVICE_URL=http://socialnet-discovery-service:8761/eureka
+#   depends_on:
+#    et-c-service:
+#     condition: service_healthy
+ socialnet-Friend-service:
+  build: ./Friend-service
+  container_name: socialnet-friend-service
+  ports:
+   - '8078:8078'
+  expose:
+   - '8078'
+  environment:
+   - DISCOVERY_SERVICE_URL=http://socialnet-discovery-service:8761/eureka
+ socialnet-interaction-service:
+  build: ./interaction-service
+  container_name: socialnet-interaction-service
+  ports:
+   - '8070:8070'
+  expose:
+   - '8070'
+  environment:
+   - DISCOVERY_SERVICE_URL=http://socialnet-discovery-service:8761/eureka
+ socialnet-media-service:
+  build: ./media-service
+  container_name: socialnet-media-service
+  ports:
+   - '8016:8016'
+  expose:
+   - '8016'
+  environment:
+   - DISCOVERY_SERVICE_URL=http://socialnet-discovery-service:8761/eureka
+ socialnet-notification-service:
+  build: ./notification-service
+  container_name: socialnet-notification-service
+  ports:
+   - '8111:8111'
+  expose:
+   - '8111'
+  environment:
+   - DISCOVERY_SERVICE_URL=http://socialnet-discovery-service:8761/eureka
+ socialnet-post-service:
+  build: ./service-post
+  container_name: socialnet-post-service
+  ports:
+   - '8074:8074'
+  expose:
+   - '8074'
+  environment:
+   - DISCOVERY_SERVICE_URL=http://socialnet-discovery-service:8761/eureka
+ socialnet-user-service:
+  build: ./User-service
+  container_name: socialnet-user-service
+  ports:
+   - '8083:8083'
+  expose:
+   - '8083'
+  environment:
+   - DISCOVERY_SERVICE_URL=http://socialnet-discovery-service:8761/eureka
+ socialnet-gateway-service:
+   build: ./geteway
+   container_name: socialnet-gateway-service
+   ports:
+    - '8222:8222'
+   expose:
+    - '8222'
+   environment:
+    - DISCOVERY_SERVICE_URL=http://socialnet-discovery-service:8761/eureka
+#   depends_on:
+#    enset-ebank-config-service:
+#     condition: service_healthy
+
+
+
+
+
+
+
 
  zookeeper:
   image: confluentinc/cp-zookeeper:7.0.1

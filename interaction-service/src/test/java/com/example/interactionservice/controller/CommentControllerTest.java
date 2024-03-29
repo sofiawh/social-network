@@ -67,6 +67,7 @@ class CommentControllerTest {
 
         ResultActions response = mockMvc.perform(post("/api/v1/comments/post/1")
                 .contentType(MediaType.APPLICATION_JSON)
+                .header("id", "1L") // Ajoutez l'en-tête id
                 .content(objectMapper.writeValueAsString(comment)));
 
         response.andExpect(MockMvcResultMatchers.status().isCreated())

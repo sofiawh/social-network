@@ -37,8 +37,6 @@ public class NotificationConsumer {
         for (UserDTO friend : friends) {
             envoyerNotification(friend);
         }
-
-
     }
 
     private void envoyerNotification(UserDTO friend) {

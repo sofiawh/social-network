@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 @Slf4j
 public class AuthController {
-
+/*
     private final IUserService userService;
     private final AuthenticationManager authenticationManager;
 
@@ -53,5 +53,5 @@ public class AuthController {
     {
         userService.validateToken(token);
         return "Token is valid";
-    }
+    }*/
 }

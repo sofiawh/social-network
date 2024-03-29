@@ -14,29 +14,29 @@ spring:
           uri: http://localhost:8070
           predicates:
             - Path=/api/v1/interactions/**
-          filters:
-            - AuthenticationFilter
+#          filters:
+#            - AuthenticationFilter
 
         - id: comments
           uri: http://localhost:8070
           predicates:
             - Path=/api/v1/comments/**
-          filters:
-            - AuthenticationFilter
+#          filters:
+#            - AuthenticationFilter
 
         - id: shareds
           uri: http://localhost:8070
           predicates:
             - Path=/api/v1/shareds/**
-          filters:
-            - AuthenticationFilter
+#          filters:
+#            - AuthenticationFilter
 
         - id: reactions
           uri: http://localhost:8070
           predicates:
             - Path=/api/v1/reactions/**
-          filters:
-            - AuthenticationFilter
+#          filters:
+#            - AuthenticationFilter
 
         - id: users-auth
           uri: http://localhost:8101
@@ -48,29 +48,29 @@ spring:
           uri: http://localhost:8083
           predicates:
             - Path=/api/v1/users/**
-          filters:
-            - AuthenticationFilter
+#          filters:
+#            - AuthenticationFilter
 
         - id: medias
           uri: http://localhost:8016
           predicates:
             - Path=/api/v1/medias/**
-          filters:
-            - AuthenticationFilter
+#          filters:
+#            - AuthenticationFilter
 
         - id: friend-services
           uri: http://localhost:8078
           predicates:
             - Path=/api/friend/**
-          filters:
-            - AuthenticationFilter
+#          filters:
+#            - AuthenticationFilter
 
         - id: post-services
           uri: http://localhost:8074
           predicates:
             - Path=/api/v1/post/**
-          filters:
-            - AuthenticationFilter
+#          filters:
+#            - AuthenticationFilter
 #/api/friend-requests
     discovery:
       enabled: true
