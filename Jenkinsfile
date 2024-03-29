@@ -49,7 +49,7 @@ pipeline {
             steps {
                 script {
                     // Parcourir les répertoires des microservices et exécuter Maven pour construire
-                    def microservices = ['discovery', 'auth-service', 'feeds-service', 'Friend-service', 'interaction-service', 'media-service', 'notification-service', 'service-post', 'User-service', 'geteway']
+                    def microservices = ['media-service','discovery', 'auth-service', 'feeds-service', 'Friend-service', 'interaction-service', 'notification-service', 'service-post', 'User-service', 'geteway']
 
                     microservices.each { service ->
                         dir(service) {
